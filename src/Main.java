@@ -28,7 +28,7 @@ public class Main {
                 case "5" -> printStrongest(animalMap);
                 case "6" -> animalStatistics(animalMap);
                 case "7" -> printAnimals(animalMap);
-                case "9"-> System.out.println("lalala");
+
             }
 
         }
