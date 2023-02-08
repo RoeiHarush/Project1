@@ -45,26 +45,28 @@ public class Main {
         System.out.println("Tiger Cat or Cow");
         kind = scanner.nextLine();
 
-        if (kind.equals("Tiger")) {
-            System.out.println("name your tiger");
-            name = scanner.nextLine();
-            Animal tiger = new Tiger(name);
-            animalMap.put(name, tiger);
-
-        } else if (kind.equals("Cat")) {
-            System.out.println("name your cat");
-            name = scanner.nextLine();
-            Animal cat = new Cats(name);
-            animalMap.put(name, cat);
-        }
-        else if (kind.equals("Cow")){
-            System.out.println("name your Cow");
-            name= scanner.nextLine();
-            Animal cow = new Cow(name);
-            animalMap.put(name,cow);
+        switch (kind) {
+            case "Tiger" -> {
+                System.out.println("name your tiger");
+                name = scanner.nextLine();
+                Animal tiger = new Tiger(name);
+                animalMap.put(name, tiger);
+            }
+            case "Cat" -> {
+                System.out.println("name your cat");
+                name = scanner.nextLine();
+                Animal cat = new Cats(name);
+                animalMap.put(name, cat);
+            }
+            case "Cow" -> {
+                System.out.println("name your Cow");
+                name = scanner.nextLine();
+                Animal cow = new Cow(name);
+                animalMap.put(name, cow);
+            }
         }
     }
-
+ //  ddddd
     private static void printAnimals(Map<String, Animal> animalMap) {
         System.out.println("List of animals:");
         for (Map.Entry<String, Animal> entry : animalMap.entrySet()) {
