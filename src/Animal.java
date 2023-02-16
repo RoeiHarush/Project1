@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class Animal {
     private String kind;
     private String name;
@@ -26,6 +29,7 @@ public abstract class Animal {
     public void makeSound() {
         System.out.println(sound);
     }
+
 
     public abstract void eat(String food);
 

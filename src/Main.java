@@ -1,5 +1,4 @@
 
-import java.awt.List;
 import java.util.*;
 
 public class Main {
@@ -18,16 +17,19 @@ public class Main {
         System.out.println("to see all the statistics about the animals in the zoo press '6'");
         System.out.println("to see all the animals in the zoo press '7'");
         System.out.println("in order to exit the code press '8'");
-        while (!input.equals("8")) {
+        while (!input.equals("10")) {
             input = scanner.nextLine();
             switch (input) {
                 case "1" -> createAnimal();
-                case "2" -> feedAnimals(animalMap);
+                 case "2" -> feedAnimals(animalMap, foodMap);
                 case "3" -> getAnimal(animalMap);
                 case "4" -> printWeakest(animalMap);
                 case "5" -> printStrongest(animalMap);
                 case "6" -> animalStatistics(animalMap);
                 case "7" -> printAnimals(animalMap);
+                case "8" -> createFood();
+                case "9" -> printFoods();
+
 
             }
 
@@ -36,8 +38,8 @@ public class Main {
     }
 
     private static Scanner scanner = new Scanner(System.in);
-    private static Map<String, Animal> animalMap = new HashMap<>();
-
+     private static Map<String, Animal> animalMap = new HashMap<>();
+    public static Map<Food, Integer> foodMap = new HashMap<>();
 
     private static void createAnimal() {
         String kind;
@@ -66,7 +68,6 @@ public class Main {
             }
         }
     }
- //  ddddd
     private static void printAnimals(Map<String, Animal> animalMap) {
         System.out.println("List of animals:");
         for (Map.Entry<String, Animal> entry : animalMap.entrySet()) {
@@ -160,27 +161,51 @@ public class Main {
     }
 
 
-    private static void feedAnimals(Map<String, Animal> animalMap) {
+    private static void feedAnimals(Map<String, Animal> animalMap, Map<Food, Integer> foodMap) {
         System.out.println("Now feed your animals");
-        System.out.println();
         System.out.println("Which animal do you want to feed?");
         String animalName = scanner.nextLine();
         Animal animal = animalMap.get(animalName);
 
-        if (animal == null) {
-            System.out.println("Error: animal not found in the map.");
-            return;
-        }
-
         System.out.println("What food do you want to give the animal?");
-        String food = scanner.nextLine();
 
-        try {
-            animal.eat(food);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: invalid food.");
-        }
+        printFoods();
+
+//        String foodName = scanner.nextLine();
+//        Food food = foodMap.get(foodName);
+//
+//        if (food == null) {
+//            System.out.println("Error: food not found in the map.");
+//            return;
+//        }
+//
+//        try {
+//            animal.eat(foodName);
+//            food.reduceStock();
+//        } catch (IllegalArgumentException e) {
+//            System.out.println("Error: invalid food.");
+//        }
+    }
+    private static void createFood()
+    {
+        System.out.println("what food you want to add to the menu");
+        String foodName= scanner.nextLine();
+        System.out.println("how much "+foodName+" would you like to order");
+        int amount = scanner.nextInt();
+        Food food = new Food(foodName,amount);
+        foodMap.put(food,amount);
+
+    }
+
+    private static void printFoods() {
+        foodMap.keySet().forEach(food -> System.out.println(food.getFoodInfo()));
+    }
+
+    private static void orderFood()//TODO
+    {
+
     }
 
 
-}
+
+ }
