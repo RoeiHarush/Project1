@@ -1,17 +1,13 @@
-import java.util.HashMap;
-import java.util.Map;
+public class Animal {
 
-public abstract class Animal {
-    private String kind;
+    private AnimalType kind;
     private String name;
-    private String sound;
     int points;
 
-    public Animal(String kind, String name, String sound) {
+    public Animal(AnimalType kind, String name) {
         this.kind = kind;
         this.name = name;
         this.points = 0;
-        this.sound = sound;
     }
 
     int getPoints() {
@@ -22,16 +18,26 @@ public abstract class Animal {
         return name;
     }
 
-    String getKind() {
+    AnimalType getKind() {
         return kind;
     }
 
-    public void makeSound() {
-        System.out.println(sound);
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public String getAnimalInfo() {
+        return this.getKind() + " " + this.getName() + " " + this.getPoints();
     }
 
 
-    public abstract void eat(String food);
+    public void makeSound() {
+        System.out.println(kind.sound);
+    }
+
+
+    public void eat(Food food) {
+        points += kind.eat(food);
+    }
 
 }
-
