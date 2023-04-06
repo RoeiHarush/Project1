@@ -1,37 +1,43 @@
 public class Food {
-    //TODO:  foodType ENUM
-    private String name;
-    private int quantity;
+    private FoodType name;
+    public int quantity;
+
+
+
+    public Food(FoodType type, int quantity) {
+        this.name = type;
+        this.quantity = quantity;
+    }
 
     public String getName() {
-        return name;
+        return name.toString();
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = FoodType.valueOf(name);
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public Food(String type, int quantity) {
-        this.name = type;
-        this.quantity = quantity;
+    public void order(int num) {
+        quantity += num;
     }
 
-
-    public void reduceStock() {
-        quantity -= 1;
-    }
 
 
     public String getFoodInfo() {
         return this.name + " " + this.quantity;
     }
 
+    public int getQuantity() {
+        return this.quantity;
+    }
+    public void reduceStock() {
+        quantity -= 1;
+    }
+    public boolean inStock() {
+        return quantity > 0;
+    }
 }

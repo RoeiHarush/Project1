@@ -1,14 +1,16 @@
+
 public enum AnimalType {
     TIGER("ROAR") {
         @Override
         int eat(Food food) {
             if (food.getQuantity() > 0) {
                 food.reduceStock();
+                dbFoodManager.updateQuantity(food.getName(), food.getQuantity());
                 switch (food.getName()) {
-                    case "banana", "worms" -> {
+                    case "BANANA", "WORMS" -> {
                         return 1;
                     }
-                    case "meat", "fish" -> {
+                    case "MEAT", "FISH" -> {
                         return 10;
                     }
                     default -> {
@@ -25,11 +27,12 @@ public enum AnimalType {
         int eat(Food food) {
             if (food.getQuantity() > 0) {
                 food.reduceStock();
+                dbFoodManager.updateQuantity(food.getName(), food.getQuantity());
                 switch (food.getName()) {
-                    case "banana", "worms" -> {
+                    case "BANANA", "WORMS" -> {
                         return 1;
                     }
-                    case "meat", "fish" -> {
+                    case "MEAT", "FISH" -> {
                         return 10;
                     }
                     default -> {
@@ -46,11 +49,12 @@ public enum AnimalType {
         int eat(Food food) {
             if (food.getQuantity() > 0) {
                 food.reduceStock();
+                dbFoodManager.updateQuantity(food.getName(), food.getQuantity());
                 switch (food.getName()) {
-                    case "Banana" -> {
+                    case "BANANA" -> {
                         return 10;
                     }
-                    case "meat", "fish", "Chocolate" -> {
+                    case "MEAT", "FISH" -> {
                         return -10;
                     }
                     default -> {
@@ -67,6 +71,7 @@ public enum AnimalType {
     AnimalType(String sound) {
         this.sound = sound;
     }
+    final DbFoodManager dbFoodManager = new DbFoodManager("jdbc:postgresql://localhost:5432/zoo","postgres", "roei");
 
     abstract int eat(Food food);
 

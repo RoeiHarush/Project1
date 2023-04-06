@@ -1,8 +1,14 @@
 public class Animal {
+    DbFoodManager dbFoodManager = new DbFoodManager("jdbc:postgresql://localhost:5432/zoo", "postgres", "roei");
+    DbZooManager dbZooManager = new DbZooManager("jdbc:postgresql://localhost:5432/zoo", "postgres", "roei");
 
     private AnimalType kind;
-    private String name;
+    public String name;
     int points;
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Animal(AnimalType kind, String name) {
         this.kind = kind;
@@ -13,7 +19,6 @@ public class Animal {
     int getPoints() {
         return points;
     }
-
     String getName() {
         return name;
     }
@@ -38,6 +43,8 @@ public class Animal {
 
     public void eat(Food food) {
         points += kind.eat(food);
+        dbZooManager.updatePoints(name,points);
+
     }
 
 }

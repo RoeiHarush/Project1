@@ -1,11 +1,14 @@
 public enum FoodType {
 
-    BANANA("Banana"),
-    MEAT("Meat"),
-    FISH("Fish"),
-    BAMBA("Bamba");
+    BANANA("BANANA"),
+    MEAT("MEAT"),
+    FISH("FISH"),
+    BAMBA("BAMBA");
 
-    FoodType(String name ) {this.name=name;}
-    final String name;
-
+    FoodType(String name) {
+        this.kind = name;
     }
+
+    final String kind;
+
+}
